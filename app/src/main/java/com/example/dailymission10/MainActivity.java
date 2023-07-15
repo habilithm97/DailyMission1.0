@@ -10,6 +10,7 @@ import com.example.dailymission10.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;
+    private ItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +27,8 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setStackFromEnd(true);
         mainBinding.recyclerView.setLayoutManager(layoutManager);
         mainBinding.recyclerView.setHasFixedSize(true); // 항상 고정된 사이즈의 RecyclerView
+
+        adapter = new ItemAdapter();
+        mainBinding.recyclerView.setAdapter(adapter);
     }
 }

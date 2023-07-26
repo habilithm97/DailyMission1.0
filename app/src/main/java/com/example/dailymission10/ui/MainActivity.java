@@ -1,12 +1,15 @@
 package com.example.dailymission10.ui;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.dailymission10.R;
@@ -49,5 +52,25 @@ public class MainActivity extends AppCompatActivity {
                 adapter.submitList(todos); // 리스트 데이터 업데이트
             }
         });
+
+        mainBinding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivityForResult(intent, 97);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        if(requestCode == 97) {
+            if(resultCode == RESULT_OK) {
+                String content = intent.getStringExtra(AddActivity.EXTRA_CONTENT);
+                Todo todo = new Todo(content);
+                vm.insert(todo);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, intent);
     }
 }

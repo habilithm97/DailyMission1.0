@@ -32,7 +32,7 @@ public class ItemAdapter extends ListAdapter<Todo, ItemAdapter.ViewHolder> {
         }
     };
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemMainBinding itemBinding;
 
         public ViewHolder(@NonNull ItemMainBinding itemBinding) {

@@ -20,12 +20,12 @@ public abstract class RoomDB extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), RoomDB.class, DB_NAME)
                     //.fallbackToDestructiveMigration() // 버전이 변경되었을 때 이전의 데이터를 모두 삭제하고 새로 생성함
-                    .addCallback(roomCallback) // Callback 메소드로 onCreate()를 작성하면 최초 DB 생성 시의 작업을 선언할 수 있음
+                    //.addCallback(roomCallback) // Callback 메소드로 onCreate()를 작성하면 최초 DB 생성 시의 작업을 선언할 수 있음
                     .build();
         }
         return instance;
     }
-
+    /*
     private final static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -53,5 +53,5 @@ public abstract class RoomDB extends RoomDatabase {
             roomDao.insert(new Todo("마술"));
             return null;
         }
-    }
+    } */
 }

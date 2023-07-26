@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">오늘의 미션</string>
+    <string name="save">저장하기</string>
+    <string name="add">할 일 추가하기</string>
+    <string name="toast">내용을 입력해주세요</string>
 </resources>

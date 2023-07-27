@@ -1,5 +1,11 @@
 package com.example.dailymission10.ui;
 
+import static com.example.dailymission10.ui.AddActivity.INSERT_MODE;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -57,20 +63,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivityForResult(intent, 97);
+                resultLauncher.launch(intent);
             }
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
-        if(requestCode == 97) {
-            if(resultCode == RESULT_OK) {
-                String content = intent.getStringExtra(AddActivity.EXTRA_CONTENT);
-                Todo todo = new Todo(content);
-                vm.insert(todo);
+    ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    Intent intent = result.getData();
+
+                    if(result.getResultCode() == INSERT_MODE) {
+                        if(intent != null) {
+                            String content = intent.getStringExtra(AddActivity.EXTRA_CONTENT);
+                            Todo todo = new Todo(content);
+                            vm.insert(todo);
+                        }
+                    }
+                }
             }
-        }
-        super.onActivityResult(requestCode, resultCode, intent);
-    }
+    );
 }

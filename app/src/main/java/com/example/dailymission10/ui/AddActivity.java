@@ -17,6 +17,7 @@ public class AddActivity extends AppCompatActivity {
     private ActivityAddBinding addBinding;
 
     public static final String EXTRA_CONTENT = "com.example.dailymission10.EXTRA_CONTENT";
+    public static final int INSERT_MODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class AddActivity extends AppCompatActivity {
         }
         Intent intent = new Intent();
         intent.putExtra(EXTRA_CONTENT, content);
-        setResult(RESULT_OK, intent);
+        setResult(INSERT_MODE, intent);
         finish();
     }
 

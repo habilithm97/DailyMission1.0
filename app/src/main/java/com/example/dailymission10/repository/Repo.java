@@ -26,6 +26,10 @@ public class Repo {
         new InsertItemTask(roomDao).execute(todo);
     }
 
+    public void delete(Todo todo) {
+        new DeleteItemTask(roomDao).execute(todo);
+    }
+
     public LiveData<List<Todo>> getAllItems() {
         return allItems;
     }
@@ -40,6 +44,20 @@ public class Repo {
         @Override
         protected Void doInBackground(Todo... todos) {
             roomDao.insert(todos[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteItemTask extends AsyncTask<Todo, Void, Void> {
+        private RoomDao roomDao;
+
+        public DeleteItemTask(RoomDao roomDao) {
+            this.roomDao = roomDao;
+        }
+
+        @Override
+        protected Void doInBackground(Todo... todos) {
+            roomDao.delete(todos[0]);
             return null;
         }
     }

@@ -54,4 +54,8 @@ public class ItemAdapter extends ListAdapter<Todo, ItemAdapter.ViewHolder> {
         Todo item = getItem(position);
         holder.itemBinding.setItem(item);
     }
+
+    public Todo getPosition(int position) {
+        return getItem(position);
+    }
 }

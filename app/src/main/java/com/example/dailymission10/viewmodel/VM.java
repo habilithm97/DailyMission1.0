@@ -28,6 +28,10 @@ public class VM extends AndroidViewModel {
         repo.insert(todo);
     }
 
+    public void delete(Todo todo) {
+        repo.delete(todo);
+    }
+
     public LiveData<List<Todo>> getAllItems() {
         return allItems;
     }

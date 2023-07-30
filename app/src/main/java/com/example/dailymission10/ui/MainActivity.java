@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.example.dailymission10.R;
@@ -58,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Todo> todos) {
                 adapter.submitList(todos); // 리스트 데이터 업데이트
+
+                if(adapter.getItemCount() != 0) {
+                    // 리스트 최하단으로 스크롤 이동
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainBinding.recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+                        }
+                    }, 100);
+                }
             }
         });
 

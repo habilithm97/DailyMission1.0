@@ -25,7 +25,9 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="@{item.content}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
         </androidx.cardview.widget.CardView>
     </LinearLayout>
